@@ -50,14 +50,14 @@ window.CONFIG = {
     },
     {
       name: "BetVip Hũ", slug: "betvip-hu", cat: "taixiu", kind: "view",
-      game_url: "https://play.betvip.hot/?utm_source=seo&utm_campaign=betvip.jp.net&utm_medium=betvip.jp.net&utm_term=betvip.jp.net",
+      game_url: "https://play.betvip.hot/",
       api_url: "https://wtx.macminim6.online/v1/tx/sessions",
       tables_api: "", image: "https://files.catbox.moe/2gu29f.jpg",
       hot: 1, vip: 1, is_new: 0, enabled: 1, maintenance: 0, sort: 2
     },
     {
       name: "BetVip MD5", slug: "betvip-md5", cat: "taixiu", kind: "view",
-      game_url: "https://play.betvip.hot/?utm_source=seo&utm_campaign=betvip.jp.net&utm_medium=betvip.jp.net&utm_term=betvip.jp.net",
+      game_url: "https://play.betvip.hot/",
       api_url: "https://wtxmd52.macminim6.online/v1/txmd5/sessions",
       tables_api: "", image: "https://files.catbox.moe/2gu29f.jpg",
       hot: 1, vip: 1, is_new: 0, enabled: 1, maintenance: 0, sort: 3
@@ -152,42 +152,42 @@ window.CONFIG = {
       game_url: "https://play.xocdia88.news/",
       api_url: "https://taixiu.system32-cloudfare-356783752985678522.monster/api/luckydice/GetSoiCau",
       tables_api: "", image: "https://files.catbox.moe/7eg34c.jpeg",
-      hot: 0, vip: 1, is_new: 0, enabled: 1, maintenance: 0, sort: 99
+      hot: 0, vip: 1, is_new: 0, enabled: 1, maintenance: 0, sort: 16
     },
     {
       name: "Xocdiax88 Md5", slug: "Xocdiax88Md5", cat: "taixiu", kind: "view",
       game_url: "https://play.xocdia88.news/",
       api_url: "https://taixiumd5.system32-cloudfare-356783752985678522.monster/api/md5luckydice/GetSoiCau",
       tables_api: "", image: "https://files.catbox.moe/7eg34c.jpeg",
-      hot: 0, vip: 1, is_new: 0, enabled: 1, maintenance: 0, sort: 99
+      hot: 0, vip: 1, is_new: 0, enabled: 1, maintenance: 0, sort: 17
     },
     {
       name: "SumClub TX", slug: "sumclub-tx", cat: "taixiu", kind: "view",
       game_url: "https://play.sum1.vin/",
       api_url: "https://apisieunhanh.lovable.app/api/public/bYoIEro5CgRHbfQ0qBgcYJYy1rfUTRafwqcZh0ta/apisumclub",
       tables_api: "", image: "https://files.catbox.moe/lnkimr.jfif",
-      hot: 0, vip: 1, is_new: 0, enabled: 1, maintenance: 0, sort: 99
+      hot: 0, vip: 1, is_new: 0, enabled: 1, maintenance: 0, sort: 18
     },
     {
       name: "SumClub MD5", slug: "sumclub-txmd5", cat: "taixiu", kind: "view",
       game_url: "https://play.sum1.vin/",
       api_url: "https://draw-prisoner-bathroom-anthony.trycloudflare.com/api/sumclub_md5/history",
       tables_api: "", image: "https://files.catbox.moe/lnkimr.jfif",
-      hot: 0, vip: 1, is_new: 0, enabled: 1, maintenance: 0, sort: 99
+      hot: 0, vip: 1, is_new: 0, enabled: 1, maintenance: 0, sort: 19
     },
     {
       name: "789Club TX", slug: "789-tx", cat: "taixiu", kind: "view",
       game_url: "",
       api_url: "https://draw-prisoner-bathroom-anthony.trycloudflare.com/api/789/history",
       tables_api: "", image: "https://files.catbox.moe/jx3lid.jpg",
-      hot: 0, vip: 1, is_new: 0, enabled: 1, maintenance: 1, sort: 99
+      hot: 0, vip: 1, is_new: 0, enabled: 1, maintenance: 1, sort: 20
     },
     {
       name: "Son789 Md5", slug: "son789-txmd5", cat: "taixiu", kind: "view",
       game_url: "https://play.son789.site/",
       api_url: "https://draw-prisoner-bathroom-anthony.trycloudflare.com/api/son789/history",
       tables_api: "", image: "https://files.catbox.moe/977u1z.jfif",
-      hot: 0, vip: 1, is_new: 0, enabled: 1, maintenance: 0, sort: 99
+      hot: 0, vip: 1, is_new: 0, enabled: 1, maintenance: 0, sort: 21
     }
   ]
 };
