@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   if (s && s.user) enterApp();
   else {
     applyLoginBranding();
-    const ls = document.getElementById('login-screen'); 
+    const ls = document.getElementById('login-screen');
     if (ls) ls.style.display = '';
   }
 
@@ -33,13 +33,20 @@ async function loadRemoteConfig() {
     const res = await api('config_get');
     if (res && res.success && res.config) {
       const remote = res.config;
-      Object.keys(remote).forEach(k => {
-        if (k === 'bank' && remote.bank) {
-          window.CONFIG.bank = Object.assign({}, window.CONFIG.bank, remote.bank);
-        } else {
-          window.CONFIG[k] = remote[k];
+      const safeKeys = ['site_name','site_desc','marquee','bank','packages','logo','avatar','footer','support_link','music_url'];
+      safeKeys.forEach(k => {
+        if (remote[k] !== undefined) {
+          if (k === 'bank' && remote.bank) {
+            window.CONFIG.bank = Object.assign({}, window.CONFIG.bank, remote.bank);
+          } else {
+            window.CONFIG[k] = remote[k];
+          }
         }
       });
+      // Ports: chỉ lấy từ server nếu có VÀ không rỗng
+      if (Array.isArray(remote.ports) && remote.ports.length > 0) {
+        window.CONFIG.ports = remote.ports;
+      }
     }
   } catch (e) { console.warn('Load remote config fail', e); }
 }
@@ -219,14 +226,12 @@ function buildCatTabs() {
   if (!el) return;
   const ports = window.CONFIG.ports || [];
 
-  // Đếm số lượng theo cat
   const cats = {
     all: ports.filter(p => p.enabled).length,
     taixiu: ports.filter(p => p.enabled && p.cat === 'taixiu').length,
     sicbo: ports.filter(p => p.enabled && p.cat === 'sicbo').length,
     baccarat: ports.filter(p => p.enabled && p.cat === 'baccarat').length,
-    hot: ports.filter(p => p.enabled && p.hot == 1).length,
-    vip: ports.filter(p => p.enabled && p.vip == 1).length
+    hot: ports.filter(p => p.enabled && p.hot == 1).length
   };
 
   const tabs = [
@@ -259,13 +264,12 @@ function buildPorts() {
   let list = ports.filter(p => p.enabled);
   if (_currentCat !== 'all') {
     if (_currentCat === 'hot') list = list.filter(p => p.hot == 1);
-    else if (_currentCat === 'vip') list = list.filter(p => p.vip == 1);
     else list = list.filter(p => p.cat === _currentCat);
   }
 
   list.sort((a, b) => (a.sort || 0) - (b.sort || 0));
 
-  const tc = document.getElementById('toolCount'); 
+  const tc = document.getElementById('toolCount');
   if (tc) tc.textContent = list.length;
 
   if (!list.length) {
@@ -283,12 +287,12 @@ function buildPorts() {
     if (t.hot == 1) badges.push('<span class="tool-badge-hot">🔥 HOT</span>');
     if (t.is_new == 1) badges.push('<span class="tool-badge-new">✨ NEW</span>');
     if (t.maintenance == 1) badges.push('<span class="tool-badge-maint">🚧 BẢO TRÌ</span>');
-    
+
     const canOpen = hasVip || t.vip == 0;
     const statusClass = canOpen && !t.maintenance ? 'ok' : '';
     const statusText = t.maintenance ? 'Bảo trì' : (canOpen ? 'Đã mở' : 'Cần VIP');
-    
-    const kindIcon = t.kind === 'panel' ? 'fa-chart-line' : 
+
+    const kindIcon = t.kind === 'panel' ? 'fa-chart-line' :
                      (t.kind === 'baccarat' ? 'fa-diamond' : 'fa-gamepad');
 
     return `
@@ -303,7 +307,7 @@ function buildPorts() {
               ${badges.join('')}
             </div>
             <div class="tool-desc">
-              ${t.kind === 'panel' ? '📊 Chỉ panel AI (không cần vào game)' : 
+              ${t.kind === 'panel' ? '📊 Chỉ panel AI (không cần vào game)' :
                 t.kind === 'baccarat' ? '🃏 Baccarat AI - Phân tích cầu' :
                 '🎮 Vào game trực tiếp'}
             </div>
@@ -314,7 +318,7 @@ function buildPorts() {
             <span class="dot"></span> ${statusText}
           </div>
           <button class="tool-btn ${canOpen && !t.maintenance ? 'unlocked' : ''}">
-            ${t.maintenance ? '<i class="fa-solid fa-hammer"></i> BẢO TRÌ' : 
+            ${t.maintenance ? '<i class="fa-solid fa-hammer"></i> BẢO TRÌ' :
               (canOpen ? '<i class="fa-solid fa-play"></i> MỞ TOOL' : '<i class="fa-solid fa-lock"></i> MỞ KHOÁ')}
           </button>
         </div>
